@@ -1,11 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import { ThemeProvider, createTheme } from '@mui/material';
+import {MessageList, Layout, ChatList, Header } from './components';
 
-const myName = 'Stanislav';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const theme = createTheme({
+palette:{
+  primary:{
+    main: "#008656",
+  },
+},
+
+});
+
 root.render(
   <React.StrictMode>
-    <App name={myName} />
+    <ThemeProvider theme={theme}>
+      <Layout
+        messages={<MessageList />}
+        header={<Header />}
+        chats={<ChatList />}
+      />
+    </ThemeProvider>
+
+
   </React.StrictMode>
 );
