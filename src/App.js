@@ -1,14 +1,12 @@
 import './App.css';
-import Message from "./components/message/Message.js"
+//import Message from "./components/message/Message.js";
+import MessageList from "./components/messagelist/Messagelist.js";
 
 function App(props) {
-    const props1 = ' Просто текст переданный в PROPS ';
     return (    
         <div className="App">
             <header className="App-header">
-            My First React App
-            <h3>Hello, {props.name}</h3>
-            <Message props1= { props1 } />
+                <MessageList />
             </header>
         </div>
     );
