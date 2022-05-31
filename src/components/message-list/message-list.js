@@ -1,11 +1,24 @@
-import React, {useState,useEffect} from "react";
-const MessageList =() => {
+import React, {useState,useEffect, useRef} from "react";
+import { Message } from "./message";
+import { Input, InputAdornment } from "@mui/material";
+import { Send } from '@mui/icons-material';
+
+
+export const MessageList =() => {
     const [messageuser, setMessageUser] = useState("");
     const [messagetext, setMessageText] = useState("");
     const [messages, setMessages] = useState([
         {"author": "Bot",
         "message": "Hello from Bot"}
     ])
+
+    const ref = useRef();
+
+    useEffect(() => {
+        if(ref.current) {
+            ref.current.scrollTo(0, ref.current.scrollHeight); 
+        }
+    }, [messages]);
 
     useEffect(() => {
         const lastMessages = messages[messages.length -1]
@@ -25,37 +38,34 @@ const MessageList =() => {
         
     }
     return (
-        <div>
+        <div ref={ref}>
             <div>
-                <div><label>Введите имя пользователя</label></div>
-                <input placeholder="Имя" 
+                <Input placeholder="Имя" 
                         value={messageuser} 
                         onChange={(e) => setMessageUser(e.target.value)}
                 />
             </div>
-            <div>
-                <div><label>Введите текст сообщения</label></div>
-                <input placeholder="Введите текст сообщения" 
+            <div>                
+                <Input placeholder="Введите текст сообщения" 
                         value={messagetext}                         
                         onChange={(e) => setMessageText(e.target.value)} 
+                        fullWidth ={true}
+                        endAdornment={
+                            <InputAdornment position="end">
+                               {messagetext && messageuser && <Send onClick = {sendMessage}/>}
+                            </InputAdornment>
+
+                        }
                 />
+        
+ 
             </div>
-            <div><button onClick={sendMessage}>Отправить в чат</button></div>
-            <hr/>
             <h3>Сообщения:</h3>
             {messages.map((message) =>(
-                <div>
-                    <h4>{message.author}:</h4>
-                    <p>{message.message}</p>
-                    <hr/>
-                </div>
+                <Message message={message}/>
 
             ))}
-
-            
-
         </div>
-    )
-}
+    );
+};
 
-export default MessageList;

@@ -1,0 +1,31 @@
+.message {
+    border-radius: 10px;
+    background-color: #427a7c;
+    color: #fff;
+    padding: 10px;
+    width: 45%;
+    margin: auto 0 10px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    word-break: break-all;
+  }
+  .datetext {
+    color: #fff;
+    text-align: right;
+  }
+  
+  .currentMessage {
+    margin: 0 0 10px auto;
+    background-color: #427a7c;
+  }
+  
+  .message p:last-child {
+    color: #427a7c;
+    text-align: right;
+  }
+  
+  .currentMessage p:last-child {
+    color: #427a7c;
+    text-align: right;
+  }
+
